@@ -47,7 +47,7 @@ contract ReplyGuy {
     }
 
     modifier onlyOwner {
-        msg.sender == owner;
+        require(msg.sender == owner, "Not the owner");
         paidViewer[msg.sender] = true;
         _;
     }
