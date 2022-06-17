@@ -94,6 +94,7 @@ contract ReplyGuy {
     }
 
     function answerQuestion(uint256 questionId, string memory hash) public onlyOwner payable {
+        require(idToQuestion[questionId].status == q_Status.open, "You've already answered this question");
         Question storage currentQuestion = idToQuestion[questionId];
         currentQuestion.answer = hash;
         currentQuestion.status = q_Status.closed;
